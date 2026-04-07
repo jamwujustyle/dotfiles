@@ -20,3 +20,11 @@ if [ ! -d "$HOME/.local/share/blesh" ]; then
     sudo apt-get install -y make
     make -C "$HOME/.local/share/blesh" install PREFIX="$HOME/.local"
 fi
+
+# 6. Install Go Debugger (Delve)
+if ! command -v dlv &> /dev/null; then
+    echo "Installing Delve debugger..."
+    # Ensure Go is in the path for the installer
+    export PATH=$PATH:/usr/local/go/bin
+    go install github.com/go-delve/delve/cmd/dlv@latest
+fi
